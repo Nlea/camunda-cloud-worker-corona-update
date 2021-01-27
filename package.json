@@ -1,0 +1,25 @@
+{
+  "name": "camunda-cloud-worker-corona-update",
+  "version": "1.0.0",
+  "description": "a worker written in JS to fetch and log tasks from Camunda Cloud and complete them",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nlea/camunda-cloud-worker-corona-update.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nlea/camunda-cloud-worker-corona-update/issues"
+  },
+  "homepage": "https://github.com/Nlea/camunda-cloud-worker-corona-update#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "got": "^11.8.1",
+    "zeebe-node": "^0.25.1"
+  }
+}
