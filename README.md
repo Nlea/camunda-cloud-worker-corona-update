@@ -17,12 +17,15 @@ In order to make the REST call the code uses the package got. So make sure you i
 npm i got
 ```
 
-You want to connect your worker to your Camunda cloud cluster. Therefore create a a file .env in the root of the project. And put in there your credentials. You can find more information [here](https://docs.camunda.io/docs/guides/setting-up-development-project#configure-connection)
+You want to connect your worker to your Camunda cloud cluster. Therefore create a a file .env in the root of the project. And put in there your camunda cloud credentials. You can find more information [here](https://docs.camunda.io/docs/guides/setting-up-development-project#configure-connection)
 
 To run the worker open a terminal and use the command:
 
 ```javascript
 ts-node src/app.ts
 ```
+
+
+If you like to build your own worker from scretch you can follow this [tutorial](https://docs.camunda.io/docs/guides/setting-up-development-project)
 
 
