@@ -4,7 +4,8 @@
   "description": "a worker written in JS to fetch and log tasks from Camunda Cloud and complete them",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/worker.ts"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,8 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "got": "^11.8.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5",
     "zeebe-node": "^0.25.1"
   }
-
 }
