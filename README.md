@@ -46,12 +46,35 @@ If you want to run the worker continuously (in a more realistic environment) it 
 * Create a Docker image. If you want to publish it later on Docker hub make sure to exclude your credentials from the .env as they can be extracted from the docker image later
 * Publish your Docker image at [Docker hub](https://hub.docker.com/) or you can use the image I created for the worker there: https://hub.docker.com/repository/docker/nlea/worker-send-telegram-message
 * In order to communicate with Kubernetes make sure you have [kubectl](https://kubernetes.io/docs/tasks/tools/) installed on your maschine
-* For the deployment to Kubernetes the project uses the `deploy.yml` file which describe a Kubernetes Deployment resource. As the docker image does not contain the credentials, you need to provide them by creating a [kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/) and then link it inside the `deploy.yml` file using Environment Variables. In the `deploy.yml` from the project the name of the secret is “mysecret”. 
+* For the deployment to Kubernetes the project uses the `deploy.yml` file which describe a Kubernetes Deployment resource. As the docker image does not contain the credentials, you need to provide them by creating a [kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/)  
 ```
 kubectl create secret generic mysecret --from-literal=zeebeaddress
-=xxxxx--from-literal=zeebeclientid=xxxxxx--from-literal=zeebeclientsecret=xxxxx--from-literal=zeebeauthorization=xxxxx--from-literal=telegramapikey
-=xxxx--from-literal=telegrammessageid=xxxx
+=xxxxx--from-literal=zeebeclientid=xxxxxx--from-literal=zeebeclientsecret=xxxxx--from-literal=zeebeauthorization=xxxxx
 ```
+
+* Then link it inside the `deploy.yml` file using Environment Variables. In the `deploy.yml` you can find in this project the name of the secret is “mysecret”. In the example below you can see how the zeebeaddress is linked in the deploy.yml:  
+
+```
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+      - name: worker
+        image: nlea/worker-corona-update
+        env: 
+        - name: ZEEBE_ADDRESS
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: zeebeaddress
+``` 
 
 Now you can deploy your Docker image to the Kubernetes cluster 🎉 
 
