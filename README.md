@@ -55,19 +55,6 @@ kubectl create secret generic mysecret --from-literal=zeebeaddress
 * Then link it inside the `deploy.yml` file using Environment Variables. In the `deploy.yml` you can find in this project the name of the secret is “mysecret”. In the example below you can see how the zeebeaddress is linked in the deploy.yml:  
 
 ```
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: worker
-  template:
-    metadata:
-      labels:
-        app: worker
-    spec:
-      containers:
-      - name: worker
-        image: nlea/worker-corona-update
         env: 
         - name: ZEEBE_ADDRESS
           valueFrom:
